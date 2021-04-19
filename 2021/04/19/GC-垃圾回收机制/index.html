@@ -79,14 +79,23 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="tags">
-<meta property="og:url" content="http://example.com/tags/index.html">
+<meta name="description" content="GC 垃圾回收程序计数器：每个线程都有，记录当前线程执行的字节码指令的位置。程序计数器–&gt;线程私有(线程隔离) java虚拟机栈：每个方法被执行时同时会创建一个栈帧，用于存储局部变量、操作栈、方法出口等信息。(线程隔离) 本地方法栈：与java虚拟机栈类似，只不过运行的是native方法。(线程隔离) java堆：用来存放对象，一个jvm实例只存在一个堆，堆内存是线程共享的。 方法区：与堆相">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GC 垃圾回收机制">
+<meta property="og:url" content="http://example.com/2021/04/19/GC-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6/index.html">
 <meta property="og:site_name" content="爱吃烧饵块">
+<meta property="og:description" content="GC 垃圾回收程序计数器：每个线程都有，记录当前线程执行的字节码指令的位置。程序计数器–&gt;线程私有(线程隔离) java虚拟机栈：每个方法被执行时同时会创建一个栈帧，用于存储局部变量、操作栈、方法出口等信息。(线程隔离) 本地方法栈：与java虚拟机栈类似，只不过运行的是native方法。(线程隔离) java堆：用来存放对象，一个jvm实例只存在一个堆，堆内存是线程共享的。 方法区：与堆相">
 <meta property="og:locale">
-<meta property="article:published_time" content="2021-03-21T04:04:17.000Z">
-<meta property="article:modified_time" content="2021-03-21T04:04:36.043Z">
+<meta property="og:image" content="https://punchline-1301219142.cos.ap-nanjing.myqcloud.com/markdown-hexo/image-20210419210814581.png">
+<meta property="og:image" content="https://punchline-1301219142.cos.ap-nanjing.myqcloud.com/markdown-hexo/image-20210419212911455.png">
+<meta property="og:image" content="https://punchline-1301219142.cos.ap-nanjing.myqcloud.com/markdown-hexo/image-20210419213220353.png">
+<meta property="og:image" content="https://punchline-1301219142.cos.ap-nanjing.myqcloud.com/markdown-hexo/image-20210419214033498.png">
+<meta property="og:image" content="https://punchline-1301219142.cos.ap-nanjing.myqcloud.com/markdown-hexo/image-20210419215055916.png">
+<meta property="og:image" content="https://punchline-1301219142.cos.ap-nanjing.myqcloud.com/markdown-hexo/image-20210419211924318.png">
+<meta property="article:published_time" content="2021-04-19T14:05:45.000Z">
+<meta property="article:modified_time" content="2021-04-19T14:07:12.440Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://punchline-1301219142.cos.ap-nanjing.myqcloud.com/markdown-hexo/image-20210419210814581.png">
 
 
 
@@ -116,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://example.com/tags/"/>
+  <link rel="canonical" href="http://example.com/2021/04/19/GC-垃圾回收机制/"/>
 
 
 
 
 
-  <title>tags | 爱吃烧饵块</title>
+  <title>GC 垃圾回收机制 | 爱吃烧饵块</title>
   
 
 
@@ -281,40 +290,283 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/19/GC-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/maka.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="爱吃烧饵块">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">tags</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <div class="tag-cloud">
-            <div class="tag-cloud-title">
-                目前共计 3 个标签
+          <h1 class="post-title" itemprop="name headline">GC 垃圾回收机制</h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-04-19T22:05:45+08:00">
+                2021-04-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%9D%A2%E8%AF%95/" itemprop="url" rel="index">
+                    <span itemprop="name">面试</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.1k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  3
+                </span>
+              
             </div>
-            <div class="tag-cloud-tags">
-              <a href="/tags/Vue/" style="font-size: 12px; color: #ccc">Vue</a> <a href="/tags/getResourceAsStream/" style="font-size: 12px; color: #ccc">getResourceAsStream</a> <a href="/tags/properties/" style="font-size: 12px; color: #ccc">properties</a>
-            </div>
-          </div>
-        
-      </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <h1 id="GC-垃圾回收"><a href="#GC-垃圾回收" class="headerlink" title="GC 垃圾回收"></a>GC 垃圾回收</h1><p><strong>程序计数器</strong>：每个线程都有，记录当前线程执行的字节码指令的位置。程序计数器–&gt;线程私有(<strong>线程隔离</strong>)</p>
+<p><strong>java虚拟机栈</strong>：每个方法被执行时同时会创建一个栈帧，用于存储局部变量、操作栈、方法出口等信息。(<strong>线程隔离</strong>)</p>
+<p><strong>本地方法栈</strong>：与java虚拟机栈类似，只不过运行的是native方法。(<strong>线程隔离</strong>)</p>
+<p><strong>java堆</strong>：用来存放对象，一个jvm实例只存在一个堆，堆内存是<strong>线程共享</strong>的。</p>
+<p><strong>方法区</strong>：与堆相同，是各个线程共享的内存区域，用于存储被虚拟机加载的<strong>类信息、常亮、静态变量</strong>等数据。</p>
+<p>内存管理的方式：</p>
+<ul>
+<li>显示内存管理：c/c++–&gt;malloc、free。<strong>野指针、内存泄漏等问题</strong> <ul>
+<li>野指针：有一指针指向的内存地址已被释放</li>
+<li>内存泄漏：使用指针之后，内存未被释放。</li>
+</ul>
+</li>
+<li>隐式内存管理：java–&gt;垃圾回收<ul>
+<li>缺点：无法控制GC时间，耗费系统性能</li>
+<li>有点：增加程序可靠性，减小内存泄漏问题</li>
+</ul>
+</li>
+</ul>
+<h3 id="GC-的几种方式"><a href="#GC-的几种方式" class="headerlink" title="GC 的几种方式"></a>GC 的几种方式</h3><h5 id="一、引用计数法"><a href="#一、引用计数法" class="headerlink" title="一、引用计数法"></a>一、引用计数法</h5><blockquote>
+<p>jvm维护一个引用计数器，表示有多少引用指向该对象。当计数器为0时表示该对象没有任何引用指向它，则为垃圾。</p>
+</blockquote>
+<p>缺点：当出现循环引用时，无法判断是否为垃圾</p>
+<img src="https://punchline-1301219142.cos.ap-nanjing.myqcloud.com/markdown-hexo/image-20210419210814581.png" alt="image-20210419210814581" style="zoom:50%;">
+
+<h5 id="二、根搜索算法"><a href="#二、根搜索算法" class="headerlink" title="二、根搜索算法"></a>二、根搜索算法</h5><blockquote>
+<p>解决了循环引用的问题</p>
+</blockquote>
+<p>这个算法的基本思想是将一系列称为“GC Rooter”的对象作为起始点从这些节点开始向下搜索搜索所走的路径称为引用链当一个对象到所有的 GC root 之间没有任何引用链相连，时，就认为该对象变成了拉圾。</p>
+<p><strong>GC Roots：一定可以访问到的对象集合</strong></p>
+<p>gc roots 包含哪些对象？</p>
+<ul>
+<li><p>java虚拟机栈中引用的对象</p>
+<p>局部变量是可以直接访问到的，所以一个局部变量是引用对象时，该对象就是我们一定可以访问到的对象</p>
+</li>
+<li><p>方法区中静态属性引用的对象</p>
+<p>可以直接使用<code>类名.name</code>的方式访问引用类型的静态成员变量</p>
+</li>
+</ul>
+<h5 id="三、标记清除算法"><a href="#三、标记清除算法" class="headerlink" title="三、标记清除算法"></a>三、标记清除算法</h5><img src="https://punchline-1301219142.cos.ap-nanjing.myqcloud.com/markdown-hexo/image-20210419212911455.png" alt="image-20210419212911455" style="zoom:90%;">
+
+<ul>
+<li>缺陷：会产生内存碎片</li>
+<li>优点：实现简单，效率高</li>
+</ul>
+<h5 id="四、复制算法"><a href="#四、复制算法" class="headerlink" title="四、复制算法"></a>四、复制算法</h5><p><img src="https://punchline-1301219142.cos.ap-nanjing.myqcloud.com/markdown-hexo/image-20210419213220353.png" alt="image-20210419213220353"></p>
+<ul>
+<li><p>堆内存被分成了两部分：保留区域和用来分配内存的区域</p>
+</li>
+<li><p>在为对象分配内存的时候，只在用分配内存的区域，为对象分配内存 </p>
+</li>
+<li><p>保留区域，只有在垃圾回收的时侯才会使用</p>
+</li>
+<li><p>圾回收的时候，会将在用来分配内存的区域中的存活对象，依次复制到保留区域中（于是保留区域，就变成了用来分配内存的区域），复制完成之后，直接一次性回收，整个用来分配内存的区域将其作为下次的保留区域</p>
+</li>
+</ul>
+<ul>
+<li><strong>优点</strong><ul>
+<li>不会产生内存碎片</li>
+<li>如果说，每一次拉圾回收的时候，只有少量存活对象，那意味着，我们只需要复制少量对象到保留区域，此时回收效率也是比较高的。</li>
+</ul>
+</li>
+<li><strong>缺点</strong><ul>
+<li>内存利用率低(每次只使用一半的内存空间)</li>
+<li>如果每次内存回收的时候，有大量的存活对象，那此时就需要复制大量对象，回收效率就不是很高了</li>
+</ul>
+</li>
+</ul>
+<h5 id="五、标记整理算法"><a href="#五、标记整理算法" class="headerlink" title="五、标记整理算法"></a>五、标记整理算法</h5><p><img src="https://punchline-1301219142.cos.ap-nanjing.myqcloud.com/markdown-hexo/image-20210419214033498.png" alt="image-20210419214033498"></p>
+<p>缺点：花费时间较久，拿时间换空间，效率低</p>
+<p>优点：不会产生内存碎片，内存利用率高</p>
+<h5 id="六、分代收集算法"><a href="#六、分代收集算法" class="headerlink" title="六、分代收集算法"></a>六、分代收集算法</h5><p><img src="https://punchline-1301219142.cos.ap-nanjing.myqcloud.com/markdown-hexo/image-20210419215055916.png" alt="image-20210419215055916"></p>
+<h3 id="几个问题"><a href="#几个问题" class="headerlink" title="几个问题"></a>几个问题</h3><h4 id="一个对象何时变为垃圾？"><a href="#一个对象何时变为垃圾？" class="headerlink" title="一个对象何时变为垃圾？"></a>一个对象何时变为垃圾？</h4><ul>
+<li>当没有任何有效的引用变量指向它的时候</li>
+<li>当一个对象也无法访可到的时候，它就变成了拉圾，无法访问到这个对象，我们也称该对象不可达</li>
+</ul>
+<img src="https://punchline-1301219142.cos.ap-nanjing.myqcloud.com/markdown-hexo/image-20210419211924318.png" alt="image-20210419211924318" style="zoom:50%;">
+
+
+
+<h3 id="何时会触发垃圾回收？"><a href="#何时会触发垃圾回收？" class="headerlink" title="何时会触发垃圾回收？"></a>何时会触发垃圾回收？</h3><ul>
+<li>申请heap space(堆内存)失败后会触发GC回收</li>
+<li>系统进入空闲一段时间后会进行回收</li>
+<li>主动调用GC进行回收(System.gc)</li>
+</ul>
+<h3 id="内存泄漏与内存溢出有联系吗？"><a href="#内存泄漏与内存溢出有联系吗？" class="headerlink" title="内存泄漏与内存溢出有联系吗？"></a>内存泄漏与内存溢出有联系吗？</h3><p>内存泄露可能导致内存溢出，但不是必然导致内存溢出</p>
+
       
     </div>
     
     
     
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/04/07/Git-%E7%9A%84%E4%BD%BF%E7%94%A8/" rel="next" title="Git 的使用">
+                <i class="fa fa-chevron-left"></i> Git 的使用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -347,8 +599,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -412,6 +673,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#GC-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6"><span class="nav-number">1.</span> <span class="nav-text">GC 垃圾回收</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#GC-%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F"><span class="nav-number">1.0.1.</span> <span class="nav-text">GC 的几种方式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%BC%95%E7%94%A8%E8%AE%A1%E6%95%B0%E6%B3%95"><span class="nav-number">1.0.1.0.1.</span> <span class="nav-text">一、引用计数法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E6%A0%B9%E6%90%9C%E7%B4%A2%E7%AE%97%E6%B3%95"><span class="nav-number">1.0.1.0.2.</span> <span class="nav-text">二、根搜索算法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E6%A0%87%E8%AE%B0%E6%B8%85%E9%99%A4%E7%AE%97%E6%B3%95"><span class="nav-number">1.0.1.0.3.</span> <span class="nav-text">三、标记清除算法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E5%A4%8D%E5%88%B6%E7%AE%97%E6%B3%95"><span class="nav-number">1.0.1.0.4.</span> <span class="nav-text">四、复制算法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E6%A0%87%E8%AE%B0%E6%95%B4%E7%90%86%E7%AE%97%E6%B3%95"><span class="nav-number">1.0.1.0.5.</span> <span class="nav-text">五、标记整理算法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E5%88%86%E4%BB%A3%E6%94%B6%E9%9B%86%E7%AE%97%E6%B3%95"><span class="nav-number">1.0.1.0.6.</span> <span class="nav-text">六、分代收集算法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%A0%E4%B8%AA%E9%97%AE%E9%A2%98"><span class="nav-number">1.0.2.</span> <span class="nav-text">几个问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80%E4%B8%AA%E5%AF%B9%E8%B1%A1%E4%BD%95%E6%97%B6%E5%8F%98%E4%B8%BA%E5%9E%83%E5%9C%BE%EF%BC%9F"><span class="nav-number">1.0.2.1.</span> <span class="nav-text">一个对象何时变为垃圾？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%95%E6%97%B6%E4%BC%9A%E8%A7%A6%E5%8F%91%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%EF%BC%9F"><span class="nav-number">1.0.3.</span> <span class="nav-text">何时会触发垃圾回收？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E4%B8%8E%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA%E6%9C%89%E8%81%94%E7%B3%BB%E5%90%97%EF%BC%9F"><span class="nav-number">1.0.4.</span> <span class="nav-text">内存泄漏与内存溢出有联系吗？</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

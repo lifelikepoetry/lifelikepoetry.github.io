@@ -292,7 +292,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/07/Maven%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BASpringBoot%E9%A1%B9%E7%9B%AE/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/07/Git-%E7%9A%84%E4%BD%BF%E7%94%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -311,7 +311,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2021/04/07/Maven%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BASpringBoot%E9%A1%B9%E7%9B%AE/" itemprop="url">Maven手动创建SpringBoot项目</a></h1>
+                <a class="post-title-link" href="/2021/04/07/Git-%E7%9A%84%E4%BD%BF%E7%94%A8/" itemprop="url">Git 的使用</a></h1>
         
 
         <div class="post-meta">
@@ -326,7 +326,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-04-07T00:50:03+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-04-07T21:54:27+08:00">
                 2021-04-07
               </time>
             
@@ -349,8 +349,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/SpringBoot/" itemprop="url" rel="index">
-                    <span itemprop="name">SpringBoot</span>
+                  <a href="/categories/Git%E7%9A%84%E4%BD%BF%E7%94%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">Git的使用</span>
                   </a>
                 </span>
 
@@ -380,7 +380,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  271
+                  667
                 </span>
               
 
@@ -396,7 +396,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  2
                 </span>
               
             </div>
@@ -419,12 +419,64 @@
       
         
           
-            <h3 id="手动用Maven创建一个SpringBoot项目-简版"><a href="#手动用Maven创建一个SpringBoot项目-简版" class="headerlink" title="手动用Maven创建一个SpringBoot项目(简版)"></a>手动用Maven创建一个SpringBoot项目(简版)</h3><h3 id="1-创建一个Maven项目"><a href="#1-创建一个Maven项目" class="headerlink" title="1. 创建一个Maven项目"></a>1. 创建一个Maven项目</h3><h3 id="2-修改pom-xml文件，增加如下配置"><a href="#2-修改pom-xml文件，增加如下配置" class="headerlink" title="2. 修改pom.xml文件，增加如下配置"></a>2. 修改pom.xml文件，增加如下配置</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">parent</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-parent<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.1.5.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">relativePath</span>/&gt;</span> <span class="comment">&lt;!-- lookup parent from repository --&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">parent</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">java.version</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">java.version</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">      <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-test<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">                  <span class="tag">&lt;<span class="name">excludes</span>&gt;</span></span><br><span class="line">                      <span class="tag">&lt;<span class="name">exclude</span>&gt;</span></span><br><span class="line">                          <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.projectlombok<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                          <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>lombok<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                      <span class="tag">&lt;/<span class="name">exclude</span>&gt;</span></span><br><span class="line">                  <span class="tag">&lt;/<span class="name">excludes</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure>
+            <h1 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h1><p><img src="https://punchline-1301219142.cos.ap-nanjing.myqcloud.com/markdown-hexo/image-20210407210140895.png" alt="image-20210407210140895"></p>
+<h3 id="一、初始化本地仓库"><a href="#一、初始化本地仓库" class="headerlink" title="一、初始化本地仓库"></a>一、初始化本地仓库</h3><h4 id="1-Git-init"><a href="#1-Git-init" class="headerlink" title="1. Git init"></a>1. Git init</h4><p>进入某个文件夹，执行<code>git init</code>命令</p>
+<img src="https://punchline-1301219142.cos.ap-nanjing.myqcloud.com/markdown-hexo/image-20210407210512130.png" alt="image-20210407210512130" style="zoom: 50%;">
 
-<h3 id="3-创建启动类并添加注解"><a href="#3-创建启动类并添加注解" class="headerlink" title="3. 创建启动类并添加注解"></a>3. 创建启动类并添加注解</h3><p><code>@SpringBootApplication</code></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.boot.SpringApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;</span><br><span class="line"></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyDemoApplication</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(MyDemoApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>与<code>.git</code>文件夹同级的目录即为工作目录</p>
+<h4 id="2-Git-init-–bare-name"><a href="#2-Git-init-–bare-name" class="headerlink" title="2. Git init –bare name"></a>2. Git init –bare <code>name</code></h4><img src="https://punchline-1301219142.cos.ap-nanjing.myqcloud.com/markdown-hexo/image-20210407210826391.png" alt="image-20210407210826391" style="zoom:50%;">
 
-<h3 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h3><img src="https://punchline-1301219142.cos.ap-nanjing.myqcloud.com/markdown-hexo/image-20210406235906473.png" alt="image-20210406235906473" style="zoom: 67%;">
+<p>会以name新建一个文件夹，该name文件夹下即为工作目录</p>
+<h4 id="3-git-clone-url"><a href="#3-git-clone-url" class="headerlink" title="3. git clone url"></a>3. git clone <code>url</code></h4><p>将url所指向的仓库clone到本地</p>
+<h4 id="4-git-status"><a href="#4-git-status" class="headerlink" title="4. git status"></a>4. git status</h4><p>查看工作区相对于暂存区的状态：有哪些地方发生变化，是否提交到暂存区</p>
+<h4 id="5-git-add-file-name"><a href="#5-git-add-file-name" class="headerlink" title="5. git add file name"></a>5. git add <code>file name</code></h4><ul>
+<li><code>git add .</code> 将所有文件add到暂存区</li>
+<li><code>git add filename</code> 将制定文件add到暂存区</li>
+</ul>
+<h4 id="6-设置用户信息"><a href="#6-设置用户信息" class="headerlink" title="6. 设置用户信息"></a>6. 设置用户信息</h4><h4 id="7-git-commit-m"><a href="#7-git-commit-m" class="headerlink" title="7. git commit -m"></a>7. git commit -m</h4><p>提交暂存区的变化到本地仓库，同时生成版本(有版本号)</p>
+<h4 id="8-git-log"><a href="#8-git-log" class="headerlink" title="8. git log"></a>8. git log</h4><p>查看历史版本日志</p>
+<h4 id="9-git-push"><a href="#9-git-push" class="headerlink" title="9. git push"></a>9. git push</h4><p>将本地仓库push到远程仓库</p>
+<h4 id="10-git-pull"><a href="#10-git-pull" class="headerlink" title="10. git pull"></a>10. git pull</h4><p>获取远程仓库的更新</p>
+<p>ps: 每次push前先pull。先更新本地仓库再上传</p>
+<h4 id="11-冲突"><a href="#11-冲突" class="headerlink" title="11. 冲突"></a>11. 冲突</h4><p>若多个开发人员同时修改了同一个文件会发生冲突。若发生冲突，则后提交的人需要处理冲突。</p>
+<h3 id="二、撤销操作"><a href="#二、撤销操作" class="headerlink" title="二、撤销操作"></a>二、撤销操作</h3><h4 id="1-工作区回退"><a href="#1-工作区回退" class="headerlink" title="1. 工作区回退"></a>1. 工作区回退</h4><p><code>git checkout 文件名</code>(慎用)，不可恢复</p>
+<h4 id="2-从暂存区回退到工作区"><a href="#2-从暂存区回退到工作区" class="headerlink" title="2. 从暂存区回退到工作区"></a>2. 从暂存区回退到工作区</h4><p><code>git reset 文件名</code></p>
+<h4 id="3-本地仓库回退到之前的某个版本"><a href="#3-本地仓库回退到之前的某个版本" class="headerlink" title="3. 本地仓库回退到之前的某个版本"></a>3. 本地仓库回退到之前的某个版本</h4><p><code>git reset --hard 版本号</code>  <font color="red"><strong>版本号不需要写全，只需要写5？6？7？位，好像能区别不同版本就行</strong></font></p>
+<p><strong>ps: 在执行回退操作之前可以执行<code>git log</code>查看历史版本commit信息，可以查看历史版本号。</strong></p>
+<h4 id="4-误删文件的解决办法"><a href="#4-误删文件的解决办法" class="headerlink" title="4. 误删文件的解决办法"></a>4. 误删文件的解决办法</h4><ol>
+<li>回退到之前的版本</li>
+<li>找到删除的内容</li>
+<li>git pull 更新本地仓库</li>
+<li>git push重新提交</li>
+</ol>
+<h4 id="5-查看所有分支"><a href="#5-查看所有分支" class="headerlink" title="5. 查看所有分支"></a>5. 查看所有分支</h4><p><code>git branch -a</code></p>
+<h4 id="6-建立分支之间的跟踪关系有待细化"><a href="#6-建立分支之间的跟踪关系有待细化" class="headerlink" title="6. 建立分支之间的跟踪关系有待细化"></a>6. 建立分支之间的跟踪关系<font color="red">有待细化</font></h4><p><code>git push --set-upstream origin dev</code> –&gt; 建立当前分支与dev分支之间的跟踪关系</p>
+<h4 id="7-分支合并有待细化"><a href="#7-分支合并有待细化" class="headerlink" title="7. 分支合并有待细化"></a>7. 分支合并<font color="red">有待细化</font></h4><p><code>git merge 分支x</code> 将分支x合并到当前分支</p>
+<h4 id="8-分支切换"><a href="#8-分支切换" class="headerlink" title="8. 分支切换"></a>8. 分支切换</h4><p><code>git checkout 分支名</code></p>
+<h3 id="三、忽略管理配置"><a href="#三、忽略管理配置" class="headerlink" title="三、忽略管理配置"></a>三、忽略管理配置</h3><p><code>.gitignore文件放在工作区的根目录下</code></p>
+<img src="https://punchline-1301219142.cos.ap-nanjing.myqcloud.com/markdown-hexo/image-20210407214900166.png" alt="image-20210407214900166" style="zoom:50%;">
+
+
+
+
+
+<p><strong>如果某个文件已经管理了，此时再进行忽略管理是失效的</strong> <strong>git 仍然可以追踪到变化</strong></p>
+<p><strong>那不小心把某个文件管理起来了怎么办？</strong></p>
+<ul>
+<li><p>先将要忽略管理的文件备份下来</p>
+</li>
+<li><p>在本地仓库删除需要忽略管理的文件——&gt;产生删除变化</p>
+</li>
+<li><p>将删除变化push到远程仓库</p>
+</li>
+<li><p>将备份的文件赋值回本地仓库</p>
+</li>
+<li><p>修改<code>.gitignore</code>文件，忽略该文件</p>
+</li>
+<li><p>push到远程仓库即可</p>
+</li>
+</ul>
+
           
         
       

@@ -292,7 +292,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/19/GC-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/07/Git-%E7%9A%84%E4%BD%BF%E7%94%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -311,7 +311,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2021/04/19/GC-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6/" itemprop="url">GC 垃圾回收机制</a></h1>
+                <a class="post-title-link" href="/2021/04/07/Git-%E7%9A%84%E4%BD%BF%E7%94%A8/" itemprop="url">Git 的使用</a></h1>
         
 
         <div class="post-meta">
@@ -326,8 +326,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-04-19T22:05:45+08:00">
-                2021-04-19
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-04-07T21:54:27+08:00">
+                2021-04-07
               </time>
             
 
@@ -349,8 +349,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%9D%A2%E8%AF%95/" itemprop="url" rel="index">
-                    <span itemprop="name">面试</span>
+                  <a href="/categories/Git%E7%9A%84%E4%BD%BF%E7%94%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">Git的使用</span>
                   </a>
                 </span>
 
@@ -380,7 +380,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.1k
+                  667
                 </span>
               
 
@@ -396,7 +396,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  3
+                  2
                 </span>
               
             </div>
@@ -419,91 +419,63 @@
       
         
           
-            <h1 id="GC-垃圾回收"><a href="#GC-垃圾回收" class="headerlink" title="GC 垃圾回收"></a>GC 垃圾回收</h1><p><strong>程序计数器</strong>：每个线程都有，记录当前线程执行的字节码指令的位置。程序计数器–&gt;线程私有(<strong>线程隔离</strong>)</p>
-<p><strong>java虚拟机栈</strong>：每个方法被执行时同时会创建一个栈帧，用于存储局部变量、操作栈、方法出口等信息。(<strong>线程隔离</strong>)</p>
-<p><strong>本地方法栈</strong>：与java虚拟机栈类似，只不过运行的是native方法。(<strong>线程隔离</strong>)</p>
-<p><strong>java堆</strong>：用来存放对象，一个jvm实例只存在一个堆，堆内存是<strong>线程共享</strong>的。</p>
-<p><strong>方法区</strong>：与堆相同，是各个线程共享的内存区域，用于存储被虚拟机加载的<strong>类信息、常亮、静态变量</strong>等数据。</p>
-<p>内存管理的方式：</p>
-<ul>
-<li>显示内存管理：c/c++–&gt;malloc、free。<strong>野指针、内存泄漏等问题</strong> <ul>
-<li>野指针：有一指针指向的内存地址已被释放</li>
-<li>内存泄漏：使用指针之后，内存未被释放。</li>
-</ul>
-</li>
-<li>隐式内存管理：java–&gt;垃圾回收<ul>
-<li>缺点：无法控制GC时间，耗费系统性能</li>
-<li>有点：增加程序可靠性，减小内存泄漏问题</li>
-</ul>
-</li>
-</ul>
-<h3 id="GC-的几种方式"><a href="#GC-的几种方式" class="headerlink" title="GC 的几种方式"></a>GC 的几种方式</h3><h5 id="一、引用计数法"><a href="#一、引用计数法" class="headerlink" title="一、引用计数法"></a>一、引用计数法</h5><blockquote>
-<p>jvm维护一个引用计数器，表示有多少引用指向该对象。当计数器为0时表示该对象没有任何引用指向它，则为垃圾。</p>
-</blockquote>
-<p>缺点：当出现循环引用时，无法判断是否为垃圾</p>
-<img src="https://punchline-1301219142.cos.ap-nanjing.myqcloud.com/markdown-hexo/image-20210419210814581.png" alt="image-20210419210814581" style="zoom:50%;">
+            <h1 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h1><p><img src="https://punchline-1301219142.cos.ap-nanjing.myqcloud.com/markdown-hexo/image-20210407210140895.png" alt="image-20210407210140895"></p>
+<h3 id="一、初始化本地仓库"><a href="#一、初始化本地仓库" class="headerlink" title="一、初始化本地仓库"></a>一、初始化本地仓库</h3><h4 id="1-Git-init"><a href="#1-Git-init" class="headerlink" title="1. Git init"></a>1. Git init</h4><p>进入某个文件夹，执行<code>git init</code>命令</p>
+<img src="https://punchline-1301219142.cos.ap-nanjing.myqcloud.com/markdown-hexo/image-20210407210512130.png" alt="image-20210407210512130" style="zoom: 50%;">
 
-<h5 id="二、根搜索算法"><a href="#二、根搜索算法" class="headerlink" title="二、根搜索算法"></a>二、根搜索算法</h5><blockquote>
-<p>解决了循环引用的问题</p>
-</blockquote>
-<p>这个算法的基本思想是将一系列称为“GC Rooter”的对象作为起始点从这些节点开始向下搜索搜索所走的路径称为引用链当一个对象到所有的 GC root 之间没有任何引用链相连，时，就认为该对象变成了拉圾。</p>
-<p><strong>GC Roots：一定可以访问到的对象集合</strong></p>
-<p>gc roots 包含哪些对象？</p>
-<ul>
-<li><p>java虚拟机栈中引用的对象</p>
-<p>局部变量是可以直接访问到的，所以一个局部变量是引用对象时，该对象就是我们一定可以访问到的对象</p>
-</li>
-<li><p>方法区中静态属性引用的对象</p>
-<p>可以直接使用<code>类名.name</code>的方式访问引用类型的静态成员变量</p>
-</li>
-</ul>
-<h5 id="三、标记清除算法"><a href="#三、标记清除算法" class="headerlink" title="三、标记清除算法"></a>三、标记清除算法</h5><img src="https://punchline-1301219142.cos.ap-nanjing.myqcloud.com/markdown-hexo/image-20210419212911455.png" alt="image-20210419212911455" style="zoom:90%;">
+<p>与<code>.git</code>文件夹同级的目录即为工作目录</p>
+<h4 id="2-Git-init-–bare-name"><a href="#2-Git-init-–bare-name" class="headerlink" title="2. Git init –bare name"></a>2. Git init –bare <code>name</code></h4><img src="https://punchline-1301219142.cos.ap-nanjing.myqcloud.com/markdown-hexo/image-20210407210826391.png" alt="image-20210407210826391" style="zoom:50%;">
 
-<ul>
-<li>缺陷：会产生内存碎片</li>
-<li>优点：实现简单，效率高</li>
+<p>会以name新建一个文件夹，该name文件夹下即为工作目录</p>
+<h4 id="3-git-clone-url"><a href="#3-git-clone-url" class="headerlink" title="3. git clone url"></a>3. git clone <code>url</code></h4><p>将url所指向的仓库clone到本地</p>
+<h4 id="4-git-status"><a href="#4-git-status" class="headerlink" title="4. git status"></a>4. git status</h4><p>查看工作区相对于暂存区的状态：有哪些地方发生变化，是否提交到暂存区</p>
+<h4 id="5-git-add-file-name"><a href="#5-git-add-file-name" class="headerlink" title="5. git add file name"></a>5. git add <code>file name</code></h4><ul>
+<li><code>git add .</code> 将所有文件add到暂存区</li>
+<li><code>git add filename</code> 将制定文件add到暂存区</li>
 </ul>
-<h5 id="四、复制算法"><a href="#四、复制算法" class="headerlink" title="四、复制算法"></a>四、复制算法</h5><p><img src="https://punchline-1301219142.cos.ap-nanjing.myqcloud.com/markdown-hexo/image-20210419213220353.png" alt="image-20210419213220353"></p>
-<ul>
-<li><p>堆内存被分成了两部分：保留区域和用来分配内存的区域</p>
-</li>
-<li><p>在为对象分配内存的时候，只在用分配内存的区域，为对象分配内存 </p>
-</li>
-<li><p>保留区域，只有在垃圾回收的时侯才会使用</p>
-</li>
-<li><p>圾回收的时候，会将在用来分配内存的区域中的存活对象，依次复制到保留区域中（于是保留区域，就变成了用来分配内存的区域），复制完成之后，直接一次性回收，整个用来分配内存的区域将其作为下次的保留区域</p>
-</li>
-</ul>
-<ul>
-<li><strong>优点</strong><ul>
-<li>不会产生内存碎片</li>
-<li>如果说，每一次拉圾回收的时候，只有少量存活对象，那意味着，我们只需要复制少量对象到保留区域，此时回收效率也是比较高的。</li>
-</ul>
-</li>
-<li><strong>缺点</strong><ul>
-<li>内存利用率低(每次只使用一半的内存空间)</li>
-<li>如果每次内存回收的时候，有大量的存活对象，那此时就需要复制大量对象，回收效率就不是很高了</li>
-</ul>
-</li>
-</ul>
-<h5 id="五、标记整理算法"><a href="#五、标记整理算法" class="headerlink" title="五、标记整理算法"></a>五、标记整理算法</h5><p><img src="https://punchline-1301219142.cos.ap-nanjing.myqcloud.com/markdown-hexo/image-20210419214033498.png" alt="image-20210419214033498"></p>
-<p>缺点：花费时间较久，拿时间换空间，效率低</p>
-<p>优点：不会产生内存碎片，内存利用率高</p>
-<h5 id="六、分代收集算法"><a href="#六、分代收集算法" class="headerlink" title="六、分代收集算法"></a>六、分代收集算法</h5><p><img src="https://punchline-1301219142.cos.ap-nanjing.myqcloud.com/markdown-hexo/image-20210419215055916.png" alt="image-20210419215055916"></p>
-<h3 id="几个问题"><a href="#几个问题" class="headerlink" title="几个问题"></a>几个问题</h3><h4 id="一个对象何时变为垃圾？"><a href="#一个对象何时变为垃圾？" class="headerlink" title="一个对象何时变为垃圾？"></a>一个对象何时变为垃圾？</h4><ul>
-<li>当没有任何有效的引用变量指向它的时候</li>
-<li>当一个对象也无法访可到的时候，它就变成了拉圾，无法访问到这个对象，我们也称该对象不可达</li>
-</ul>
-<img src="https://punchline-1301219142.cos.ap-nanjing.myqcloud.com/markdown-hexo/image-20210419211924318.png" alt="image-20210419211924318" style="zoom:50%;">
+<h4 id="6-设置用户信息"><a href="#6-设置用户信息" class="headerlink" title="6. 设置用户信息"></a>6. 设置用户信息</h4><h4 id="7-git-commit-m"><a href="#7-git-commit-m" class="headerlink" title="7. git commit -m"></a>7. git commit -m</h4><p>提交暂存区的变化到本地仓库，同时生成版本(有版本号)</p>
+<h4 id="8-git-log"><a href="#8-git-log" class="headerlink" title="8. git log"></a>8. git log</h4><p>查看历史版本日志</p>
+<h4 id="9-git-push"><a href="#9-git-push" class="headerlink" title="9. git push"></a>9. git push</h4><p>将本地仓库push到远程仓库</p>
+<h4 id="10-git-pull"><a href="#10-git-pull" class="headerlink" title="10. git pull"></a>10. git pull</h4><p>获取远程仓库的更新</p>
+<p>ps: 每次push前先pull。先更新本地仓库再上传</p>
+<h4 id="11-冲突"><a href="#11-冲突" class="headerlink" title="11. 冲突"></a>11. 冲突</h4><p>若多个开发人员同时修改了同一个文件会发生冲突。若发生冲突，则后提交的人需要处理冲突。</p>
+<h3 id="二、撤销操作"><a href="#二、撤销操作" class="headerlink" title="二、撤销操作"></a>二、撤销操作</h3><h4 id="1-工作区回退"><a href="#1-工作区回退" class="headerlink" title="1. 工作区回退"></a>1. 工作区回退</h4><p><code>git checkout 文件名</code>(慎用)，不可恢复</p>
+<h4 id="2-从暂存区回退到工作区"><a href="#2-从暂存区回退到工作区" class="headerlink" title="2. 从暂存区回退到工作区"></a>2. 从暂存区回退到工作区</h4><p><code>git reset 文件名</code></p>
+<h4 id="3-本地仓库回退到之前的某个版本"><a href="#3-本地仓库回退到之前的某个版本" class="headerlink" title="3. 本地仓库回退到之前的某个版本"></a>3. 本地仓库回退到之前的某个版本</h4><p><code>git reset --hard 版本号</code>  <font color="red"><strong>版本号不需要写全，只需要写5？6？7？位，好像能区别不同版本就行</strong></font></p>
+<p><strong>ps: 在执行回退操作之前可以执行<code>git log</code>查看历史版本commit信息，可以查看历史版本号。</strong></p>
+<h4 id="4-误删文件的解决办法"><a href="#4-误删文件的解决办法" class="headerlink" title="4. 误删文件的解决办法"></a>4. 误删文件的解决办法</h4><ol>
+<li>回退到之前的版本</li>
+<li>找到删除的内容</li>
+<li>git pull 更新本地仓库</li>
+<li>git push重新提交</li>
+</ol>
+<h4 id="5-查看所有分支"><a href="#5-查看所有分支" class="headerlink" title="5. 查看所有分支"></a>5. 查看所有分支</h4><p><code>git branch -a</code></p>
+<h4 id="6-建立分支之间的跟踪关系有待细化"><a href="#6-建立分支之间的跟踪关系有待细化" class="headerlink" title="6. 建立分支之间的跟踪关系有待细化"></a>6. 建立分支之间的跟踪关系<font color="red">有待细化</font></h4><p><code>git push --set-upstream origin dev</code> –&gt; 建立当前分支与dev分支之间的跟踪关系</p>
+<h4 id="7-分支合并有待细化"><a href="#7-分支合并有待细化" class="headerlink" title="7. 分支合并有待细化"></a>7. 分支合并<font color="red">有待细化</font></h4><p><code>git merge 分支x</code> 将分支x合并到当前分支</p>
+<h4 id="8-分支切换"><a href="#8-分支切换" class="headerlink" title="8. 分支切换"></a>8. 分支切换</h4><p><code>git checkout 分支名</code></p>
+<h3 id="三、忽略管理配置"><a href="#三、忽略管理配置" class="headerlink" title="三、忽略管理配置"></a>三、忽略管理配置</h3><p><code>.gitignore文件放在工作区的根目录下</code></p>
+<img src="https://punchline-1301219142.cos.ap-nanjing.myqcloud.com/markdown-hexo/image-20210407214900166.png" alt="image-20210407214900166" style="zoom:50%;">
 
 
 
-<h3 id="何时会触发垃圾回收？"><a href="#何时会触发垃圾回收？" class="headerlink" title="何时会触发垃圾回收？"></a>何时会触发垃圾回收？</h3><ul>
-<li>申请heap space(堆内存)失败后会触发GC回收</li>
-<li>系统进入空闲一段时间后会进行回收</li>
-<li>主动调用GC进行回收(System.gc)</li>
+
+
+<p><strong>如果某个文件已经管理了，此时再进行忽略管理是失效的</strong> <strong>git 仍然可以追踪到变化</strong></p>
+<p><strong>那不小心把某个文件管理起来了怎么办？</strong></p>
+<ul>
+<li><p>先将要忽略管理的文件备份下来</p>
+</li>
+<li><p>在本地仓库删除需要忽略管理的文件——&gt;产生删除变化</p>
+</li>
+<li><p>将删除变化push到远程仓库</p>
+</li>
+<li><p>将备份的文件赋值回本地仓库</p>
+</li>
+<li><p>修改<code>.gitignore</code>文件，忽略该文件</p>
+</li>
+<li><p>push到远程仓库即可</p>
+</li>
 </ul>
-<h3 id="内存泄漏与内存溢出有联系吗？"><a href="#内存泄漏与内存溢出有联系吗？" class="headerlink" title="内存泄漏与内存溢出有联系吗？"></a>内存泄漏与内存溢出有联系吗？</h3><p>内存泄露可能导致内存溢出，但不是必然导致内存溢出</p>
 
           
         

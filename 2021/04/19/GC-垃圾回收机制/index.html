@@ -81,21 +81,21 @@
 
 <meta name="description" content="GC 垃圾回收程序计数器：每个线程都有，记录当前线程执行的字节码指令的位置。程序计数器–&gt;线程私有(线程隔离) java虚拟机栈：每个方法被执行时同时会创建一个栈帧，用于存储局部变量、操作栈、方法出口等信息。(线程隔离) 本地方法栈：与java虚拟机栈类似，只不过运行的是native方法。(线程隔离) java堆：用来存放对象，一个jvm实例只存在一个堆，堆内存是线程共享的。 方法区：与堆相">
 <meta property="og:type" content="article">
-<meta property="og:title" content="GC 垃圾回收机制">
+<meta property="og:title" content="爱吃烧饵块">
 <meta property="og:url" content="http://example.com/2021/04/19/GC-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6/index.html">
 <meta property="og:site_name" content="爱吃烧饵块">
 <meta property="og:description" content="GC 垃圾回收程序计数器：每个线程都有，记录当前线程执行的字节码指令的位置。程序计数器–&gt;线程私有(线程隔离) java虚拟机栈：每个方法被执行时同时会创建一个栈帧，用于存储局部变量、操作栈、方法出口等信息。(线程隔离) 本地方法栈：与java虚拟机栈类似，只不过运行的是native方法。(线程隔离) java堆：用来存放对象，一个jvm实例只存在一个堆，堆内存是线程共享的。 方法区：与堆相">
 <meta property="og:locale">
-<meta property="og:image" content="https://punchline-1301219142.cos.ap-nanjing.myqcloud.com/markdown-hexo/image-20210419210814581.png">
-<meta property="og:image" content="https://punchline-1301219142.cos.ap-nanjing.myqcloud.com/markdown-hexo/image-20210419212911455.png">
-<meta property="og:image" content="https://punchline-1301219142.cos.ap-nanjing.myqcloud.com/markdown-hexo/image-20210419213220353.png">
-<meta property="og:image" content="https://punchline-1301219142.cos.ap-nanjing.myqcloud.com/markdown-hexo/image-20210419214033498.png">
-<meta property="og:image" content="https://punchline-1301219142.cos.ap-nanjing.myqcloud.com/markdown-hexo/image-20210419215055916.png">
-<meta property="og:image" content="https://punchline-1301219142.cos.ap-nanjing.myqcloud.com/markdown-hexo/image-20210419211924318.png">
-<meta property="article:published_time" content="2021-04-19T14:05:45.000Z">
-<meta property="article:modified_time" content="2021-04-19T14:07:12.440Z">
+<meta property="og:image" content="http://example.com/.com//punchline/MarkdownPicture/image-20210419210814581.png">
+<meta property="og:image" content="http://example.com/.com//punchline/MarkdownPicture/image-20210419212911455.png">
+<meta property="og:image" content="http://example.com/.com//punchline/MarkdownPicture/image-20210419213220353.png">
+<meta property="og:image" content="http://example.com/.com//punchline/MarkdownPicture/image-20210419214033498.png">
+<meta property="og:image" content="http://example.com/.com//punchline/MarkdownPicture/image-20210419215055916.png">
+<meta property="og:image" content="http://example.com/.com//punchline/MarkdownPicture/image-20210419211924318.png">
+<meta property="article:published_time" content="2021-04-19T14:05:45.633Z">
+<meta property="article:modified_time" content="2021-04-20T00:52:37.325Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://punchline-1301219142.cos.ap-nanjing.myqcloud.com/markdown-hexo/image-20210419210814581.png">
+<meta name="twitter:image" content="http://example.com/.com//punchline/MarkdownPicture/image-20210419210814581.png">
 
 
 
@@ -131,7 +131,7 @@
 
 
 
-  <title>GC 垃圾回收机制 | 爱吃烧饵块</title>
+  <title> | 爱吃烧饵块</title>
   
 
 
@@ -319,7 +319,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">GC 垃圾回收机制</h1>
+          <h1 class="post-title" itemprop="name headline"></h1>
         
 
         <div class="post-meta">
@@ -344,28 +344,6 @@
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%9D%A2%E8%AF%95/" itemprop="url" rel="index">
-                    <span itemprop="name">面试</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -448,16 +426,16 @@
 </ul>
 </li>
 </ul>
-<h3 id="GC-的几种方式"><a href="#GC-的几种方式" class="headerlink" title="GC 的几种方式"></a>GC 的几种方式</h3><h5 id="一、引用计数法"><a href="#一、引用计数法" class="headerlink" title="一、引用计数法"></a>一、引用计数法</h5><blockquote>
+<h3 id="判断对象何时变为垃圾的两种方式"><a href="#判断对象何时变为垃圾的两种方式" class="headerlink" title="判断对象何时变为垃圾的两种方式"></a>判断对象何时变为垃圾的两种方式</h3><h5 id="一、引用计数法"><a href="#一、引用计数法" class="headerlink" title="一、引用计数法"></a>一、引用计数法</h5><blockquote>
 <p>jvm维护一个引用计数器，表示有多少引用指向该对象。当计数器为0时表示该对象没有任何引用指向它，则为垃圾。</p>
 </blockquote>
 <p>缺点：当出现循环引用时，无法判断是否为垃圾</p>
-<img src="https://punchline-1301219142.cos.ap-nanjing.myqcloud.com/markdown-hexo/image-20210419210814581.png" alt="image-20210419210814581" style="zoom:50%;">
+<img src="/.com//punchline/MarkdownPicture/image-20210419210814581.png" alt="image-20210419210814581" style="zoom:50%;">
 
 <h5 id="二、根搜索算法"><a href="#二、根搜索算法" class="headerlink" title="二、根搜索算法"></a>二、根搜索算法</h5><blockquote>
 <p>解决了循环引用的问题</p>
 </blockquote>
-<p>这个算法的基本思想是将一系列称为“GC Rooter”的对象作为起始点从这些节点开始向下搜索搜索所走的路径称为引用链当一个对象到所有的 GC root 之间没有任何引用链相连，时，就认为该对象变成了拉圾。</p>
+<p>这个算法的基本思想是将一系列称为“GC Rooter”的对象作为起始点从这些节点开始向下搜索搜索所走的路径称为引用链当一个对象到所有的 GC root 之间没有任何引用链相连，时就认为该对象变成了垃圾。</p>
 <p><strong>GC Roots：一定可以访问到的对象集合</strong></p>
 <p>gc roots 包含哪些对象？</p>
 <ul>
@@ -468,16 +446,17 @@
 <p>可以直接使用<code>类名.name</code>的方式访问引用类型的静态成员变量</p>
 </li>
 </ul>
-<h5 id="三、标记清除算法"><a href="#三、标记清除算法" class="headerlink" title="三、标记清除算法"></a>三、标记清除算法</h5><img src="https://punchline-1301219142.cos.ap-nanjing.myqcloud.com/markdown-hexo/image-20210419212911455.png" alt="image-20210419212911455" style="zoom:90%;">
+<h3 id="GC-的几种方式"><a href="#GC-的几种方式" class="headerlink" title="GC 的几种方式"></a>GC 的几种方式</h3><h5 id="一、标记清除算法"><a href="#一、标记清除算法" class="headerlink" title="一、标记清除算法"></a>一、标记清除算法</h5><img src="/.com//punchline/MarkdownPicture/image-20210419212911455.png" alt="image-20210419212911455" style="zoom:90%;">
 
 <ul>
 <li>缺陷：会产生内存碎片</li>
 <li>优点：实现简单，效率高</li>
 </ul>
-<h5 id="四、复制算法"><a href="#四、复制算法" class="headerlink" title="四、复制算法"></a>四、复制算法</h5><p><img src="https://punchline-1301219142.cos.ap-nanjing.myqcloud.com/markdown-hexo/image-20210419213220353.png" alt="image-20210419213220353"></p>
+<h5 id="二、复制算法"><a href="#二、复制算法" class="headerlink" title="二、复制算法"></a>二、复制算法</h5><p><img src="/.com//punchline/MarkdownPicture/image-20210419213220353.png" alt="image-20210419213220353"></p>
 <ul>
-<li><p>堆内存被分成了两部分：保留区域和用来分配内存的区域</p>
-</li>
+<li>堆内存被分成了两部分：保留区域和用来分配内存的区域</li>
+</ul>
+<ul>
 <li><p>在为对象分配内存的时候，只在用分配内存的区域，为对象分配内存 </p>
 </li>
 <li><p>保留区域，只有在垃圾回收的时侯才会使用</p>
@@ -497,15 +476,15 @@
 </ul>
 </li>
 </ul>
-<h5 id="五、标记整理算法"><a href="#五、标记整理算法" class="headerlink" title="五、标记整理算法"></a>五、标记整理算法</h5><p><img src="https://punchline-1301219142.cos.ap-nanjing.myqcloud.com/markdown-hexo/image-20210419214033498.png" alt="image-20210419214033498"></p>
+<h5 id="三、标记整理算法"><a href="#三、标记整理算法" class="headerlink" title="三、标记整理算法"></a>三、标记整理算法</h5><p><img src="/.com//punchline/MarkdownPicture/image-20210419214033498.png" alt="image-20210419214033498"></p>
 <p>缺点：花费时间较久，拿时间换空间，效率低</p>
 <p>优点：不会产生内存碎片，内存利用率高</p>
-<h5 id="六、分代收集算法"><a href="#六、分代收集算法" class="headerlink" title="六、分代收集算法"></a>六、分代收集算法</h5><p><img src="https://punchline-1301219142.cos.ap-nanjing.myqcloud.com/markdown-hexo/image-20210419215055916.png" alt="image-20210419215055916"></p>
+<h5 id="四、分代收集算法"><a href="#四、分代收集算法" class="headerlink" title="四、分代收集算法"></a>四、分代收集算法</h5><p><img src="/.com//punchline/MarkdownPicture/image-20210419215055916.png" alt="image-20210419215055916"></p>
 <h3 id="几个问题"><a href="#几个问题" class="headerlink" title="几个问题"></a>几个问题</h3><h4 id="一个对象何时变为垃圾？"><a href="#一个对象何时变为垃圾？" class="headerlink" title="一个对象何时变为垃圾？"></a>一个对象何时变为垃圾？</h4><ul>
 <li>当没有任何有效的引用变量指向它的时候</li>
 <li>当一个对象也无法访可到的时候，它就变成了拉圾，无法访问到这个对象，我们也称该对象不可达</li>
 </ul>
-<img src="https://punchline-1301219142.cos.ap-nanjing.myqcloud.com/markdown-hexo/image-20210419211924318.png" alt="image-20210419211924318" style="zoom:50%;">
+<img src="/.com//punchline/MarkdownPicture/image-20210419211924318.png" alt="image-20210419211924318" style="zoom:50%;">
 
 
 
@@ -687,7 +666,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#GC-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6"><span class="nav-number">1.</span> <span class="nav-text">GC 垃圾回收</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#GC-%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F"><span class="nav-number">1.0.1.</span> <span class="nav-text">GC 的几种方式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%BC%95%E7%94%A8%E8%AE%A1%E6%95%B0%E6%B3%95"><span class="nav-number">1.0.1.0.1.</span> <span class="nav-text">一、引用计数法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E6%A0%B9%E6%90%9C%E7%B4%A2%E7%AE%97%E6%B3%95"><span class="nav-number">1.0.1.0.2.</span> <span class="nav-text">二、根搜索算法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E6%A0%87%E8%AE%B0%E6%B8%85%E9%99%A4%E7%AE%97%E6%B3%95"><span class="nav-number">1.0.1.0.3.</span> <span class="nav-text">三、标记清除算法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E5%A4%8D%E5%88%B6%E7%AE%97%E6%B3%95"><span class="nav-number">1.0.1.0.4.</span> <span class="nav-text">四、复制算法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E6%A0%87%E8%AE%B0%E6%95%B4%E7%90%86%E7%AE%97%E6%B3%95"><span class="nav-number">1.0.1.0.5.</span> <span class="nav-text">五、标记整理算法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E5%88%86%E4%BB%A3%E6%94%B6%E9%9B%86%E7%AE%97%E6%B3%95"><span class="nav-number">1.0.1.0.6.</span> <span class="nav-text">六、分代收集算法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%A0%E4%B8%AA%E9%97%AE%E9%A2%98"><span class="nav-number">1.0.2.</span> <span class="nav-text">几个问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80%E4%B8%AA%E5%AF%B9%E8%B1%A1%E4%BD%95%E6%97%B6%E5%8F%98%E4%B8%BA%E5%9E%83%E5%9C%BE%EF%BC%9F"><span class="nav-number">1.0.2.1.</span> <span class="nav-text">一个对象何时变为垃圾？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%95%E6%97%B6%E4%BC%9A%E8%A7%A6%E5%8F%91%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%EF%BC%9F"><span class="nav-number">1.0.3.</span> <span class="nav-text">何时会触发垃圾回收？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E4%B8%8E%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA%E6%9C%89%E8%81%94%E7%B3%BB%E5%90%97%EF%BC%9F"><span class="nav-number">1.0.4.</span> <span class="nav-text">内存泄漏与内存溢出有联系吗？</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#GC-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6"><span class="nav-number">1.</span> <span class="nav-text">GC 垃圾回收</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A4%E6%96%AD%E5%AF%B9%E8%B1%A1%E4%BD%95%E6%97%B6%E5%8F%98%E4%B8%BA%E5%9E%83%E5%9C%BE%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%96%B9%E5%BC%8F"><span class="nav-number">1.0.1.</span> <span class="nav-text">判断对象何时变为垃圾的两种方式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%BC%95%E7%94%A8%E8%AE%A1%E6%95%B0%E6%B3%95"><span class="nav-number">1.0.1.0.1.</span> <span class="nav-text">一、引用计数法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E6%A0%B9%E6%90%9C%E7%B4%A2%E7%AE%97%E6%B3%95"><span class="nav-number">1.0.1.0.2.</span> <span class="nav-text">二、根搜索算法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GC-%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F"><span class="nav-number">1.0.2.</span> <span class="nav-text">GC 的几种方式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E6%A0%87%E8%AE%B0%E6%B8%85%E9%99%A4%E7%AE%97%E6%B3%95"><span class="nav-number">1.0.2.0.1.</span> <span class="nav-text">一、标记清除算法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%A4%8D%E5%88%B6%E7%AE%97%E6%B3%95"><span class="nav-number">1.0.2.0.2.</span> <span class="nav-text">二、复制算法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E6%A0%87%E8%AE%B0%E6%95%B4%E7%90%86%E7%AE%97%E6%B3%95"><span class="nav-number">1.0.2.0.3.</span> <span class="nav-text">三、标记整理算法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E5%88%86%E4%BB%A3%E6%94%B6%E9%9B%86%E7%AE%97%E6%B3%95"><span class="nav-number">1.0.2.0.4.</span> <span class="nav-text">四、分代收集算法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%A0%E4%B8%AA%E9%97%AE%E9%A2%98"><span class="nav-number">1.0.3.</span> <span class="nav-text">几个问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80%E4%B8%AA%E5%AF%B9%E8%B1%A1%E4%BD%95%E6%97%B6%E5%8F%98%E4%B8%BA%E5%9E%83%E5%9C%BE%EF%BC%9F"><span class="nav-number">1.0.3.1.</span> <span class="nav-text">一个对象何时变为垃圾？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%95%E6%97%B6%E4%BC%9A%E8%A7%A6%E5%8F%91%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%EF%BC%9F"><span class="nav-number">1.0.4.</span> <span class="nav-text">何时会触发垃圾回收？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E4%B8%8E%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA%E6%9C%89%E8%81%94%E7%B3%BB%E5%90%97%EF%BC%9F"><span class="nav-number">1.0.5.</span> <span class="nav-text">内存泄漏与内存溢出有联系吗？</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
